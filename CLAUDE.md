@@ -149,3 +149,4 @@ make deploy        # Deploy to GCP
 - Maintain hexagonal architecture throughout
 - Code quality gates must pass before merging
 - Test coverage must remain above 80%
+- **ZERO COST REQUIREMENT**: This project should incur NO costs. Use GCP free tier only, minimal resources, and be cost-conscious in all infrastructure decisions
