@@ -1,0 +1,129 @@
+# .NET build artifacts
+bin/
+obj/
+out/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.user
+*.suo
+*.userprefs
+*.pidb
+*.DotSettings.user
+
+# Test results
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+*.opencover.xml
+*.trx
+
+# NuGet packages
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+
+# Visual Studio / Rider
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Terraform / CDKTF
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraform/
+.terraformrc
+terraform.rc
+cdktf.out/
+.gen/
+terraform.tfstate.d/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Docker
+docker-compose.override.yml
+.dockerignore
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+
+# Secrets and credentials
+*.key
+*.pem
+*.p12
+*.pfx
+service-account*.json
+credentials.json
+
+# SonarQube
+.sonarqube/
+.scannerwork/
+
+# Node modules (for CDKTF)
+node_modules/
+package-lock.json
+yarn.lock
+
+# JetBrains Rider
+*.sln.iml
+.idea/
+*.DotSettings.user
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio cache/options
+.vs/
+.vscode/
+
+# MSTest test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# Backup files
+*.bak
+*.backup
+
+# Generated code
+*.Generated.cs
