@@ -20,19 +20,25 @@ Build a production-ready monorepo with CDKTF infrastructure provisioning .NET 10
 ```
 flushy-iac/
 ├── infra/
-│   └── Flushy.Infrastructure/      # CDKTF Infrastructure (C#)
-│       ├── Program.cs              # CDKTF entry point
-│       ├── Stacks/
-│       │   └── GcpStack.cs         # GCP resource stack
-│       ├── Constructs/
-│       │   └── CloudRunConstruct.cs # Reusable components
-│       ├── Config/
-│       │   └── EnvironmentConfig.cs
-│       ├── Flushy.Infrastructure.csproj
-│       └── cdktf.json
+│   └── flushy-infrastructure/      # CDKTF Infrastructure
+│       ├── src/                    # Infrastructure code (C#)
+│       │   ├── Program.cs          # CDKTF entry point
+│       │   ├── Stacks/
+│       │   │   └── GcpStack.cs     # GCP resource stack
+│       │   ├── Constructs/
+│       │   │   └── CloudRunConstruct.cs # Reusable components
+│       │   ├── Config/
+│       │   │   └── EnvironmentConfig.cs
+│       │   ├── Flushy.Infrastructure.csproj
+│       │   └── cdktf.json
+│       └── tests/                  # Infrastructure tests
 ├── services/
 │   ├── flushy-api-service/         # REST API (.NET 10)
+│   │   ├── src/                    # Application code
+│   │   └── tests/                  # Unit tests
 │   ├── flushy-grpc-service/        # gRPC service (.NET 10)
+│   │   ├── src/                    # Application code
+│   │   └── tests/                  # Unit tests
 │   └── shared/                     # Shared libraries
 │       └── Flushy.Shared.Configuration/  # Config & Secret Manager helpers
 ├── .editorconfig                   # Code style consistency
@@ -81,7 +87,7 @@ clean:        # Clean build artifacts
 	find . -name "bin" -o -name "obj" | xargs rm -rf
 
 deploy:       # Deploy to GCP via CDKTF
-	cd infra/Flushy.Infrastructure && cdktf deploy
+	cd infra/flushy-infrastructure/src && cdktf deploy
 
 sonar-up:     # Start SonarQube locally
 	docker-compose -f docker-compose.sonar.yml up -d
@@ -173,7 +179,7 @@ cdktf init --template=csharp --local --project-name=Flushy.Infrastructure
 
 ### 2.2 GCP Resources Stack
 
-**infra/Flushy.Infrastructure/Program.cs** - Core infrastructure:
+**infra/flushy-infrastructure/src/Program.cs** - Core infrastructure:
 - Service Accounts (per service with minimal IAM)
 - Artifact Registry (Docker repository)
 - Cloud Run Services (api-service, grpc-service)
@@ -602,8 +608,8 @@ if (!builder.Environment.IsDevelopment()) {
 1. **/.editorconfig** - Code style enforcement
 2. **/Directory.Build.props** - Shared MSBuild configuration
 3. **/sonar-project.properties** - SonarQube configuration
-4. **/infra/Flushy.Infrastructure/Program.cs** - CDKTF C# entry point
-5. **/infra/Flushy.Infrastructure/Stacks/GcpStack.cs** - GCP resources stack
+4. **/infra/flushy-infrastructure/src/Program.cs** - CDKTF C# entry point
+5. **/infra/flushy-infrastructure/src/Stacks/GcpStack.cs** - GCP resources stack
 6. **/services/flushy-api-service/Program.cs** - REST API service (basic setup)
 7. **/services/shared/Flushy.Shared.Configuration/** - Configuration helpers
 8. **/docker-compose.yml** - Local dev orchestration

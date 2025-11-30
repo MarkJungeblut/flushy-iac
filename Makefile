@@ -26,24 +26,24 @@ clean:  ## Clean build artifacts
 	find . -type d -name "bin" -o -name "obj" -o -name "TestResults" | xargs rm -rf
 
 infra-synth:  ## Generate Terraform JSON locally (no GCP required)
-	cd infra/Flushy.Infrastructure && cdktf synth
-	@echo "Generated Terraform files in infra/Flushy.Infrastructure/cdktf.out/"
+	cd infra/flushy-infrastructure/src && cdktf synth
+	@echo "Generated Terraform files in infra/flushy-infrastructure/src/cdktf.out/"
 
 infra-diff:  ## Preview infrastructure changes (requires GCP credentials, read-only)
-	cd infra/Flushy.Infrastructure && cdktf diff
+	cd infra/flushy-infrastructure/src && cdktf diff
 
 infra-test:  ## Test infrastructure code locally (synth + validate)
 	@echo "Synthesizing CDKTF stack..."
-	cd infra/Flushy.Infrastructure && cdktf synth
+	cd infra/flushy-infrastructure/src && cdktf synth
 	@echo "✓ CDKTF synthesis successful"
-	@echo "Review generated files in infra/Flushy.Infrastructure/cdktf.out/"
+	@echo "Review generated files in infra/flushy-infrastructure/src/cdktf.out/"
 
 deploy:  ## Deploy to GCP via CDKTF (WARNING: may incur costs)
 	@echo "WARNING: This will deploy to GCP and may incur costs!"
 	@read -p "Are you sure? [y/N] " -n 1 -r; \
 	echo; \
 	if [[ $$REPLY =~ ^[Yy]$$ ]]; then \
-		cd infra/Flushy.Infrastructure && cdktf deploy; \
+		cd infra/flushy-infrastructure/src && cdktf deploy; \
 	else \
 		echo "Deployment cancelled."; \
 	fi

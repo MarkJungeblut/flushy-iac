@@ -17,7 +17,7 @@ Establish the foundational structure for the monorepo including directory layout
 
 ### 1. Create Directory Structure
 ```bash
-infra/Flushy.Infrastructure/{Stacks,Constructs,Config}/
+infra/flushy-infrastructure/src/{Stacks,Constructs,Config}/
 services/flushy-api-service/src/{Api/Controllers,Application/{Services,Interfaces},Domain/Models}/
 services/flushy-api-service/tests/Flushy.Api.Tests/{Controllers,Services}/
 services/flushy-grpc-service/src/{Api/Grpc,Application/{Services,Interfaces},Domain/Models,Protos}/

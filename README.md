@@ -214,7 +214,7 @@ Coverage reports are generated in `TestResults/` directory.
 export GOOGLE_APPLICATION_CREDENTIALS=/path/to/key.json
 
 # Navigate to infrastructure
-cd infra/Flushy.Infrastructure
+cd infra/flushy-infrastructure/src
 
 # Initialize CDKTF
 cdktf init
@@ -315,7 +315,7 @@ gcloud auth list
 gcloud services list --enabled
 
 # Check CDKTF logs
-cd infra/Flushy.Infrastructure
+cd infra/flushy-infrastructure/src
 cdktf plan
 ```
 

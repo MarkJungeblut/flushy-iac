@@ -91,17 +91,17 @@ Test infrastructure code locally before deployment:
 ```bash
 # Synthesize CDKTF to Terraform JSON
 make infra-synth
-# or: cd infra/Flushy.Infrastructure && cdktf synth
+# or: cd infra/flushy-infrastructure/src && cdktf synth
 
 # Test infrastructure locally (synthesis + validation)
 make infra-test
 
 # Review generated Terraform
-cat infra/Flushy.Infrastructure/cdktf.out/stacks/*/cdk.tf.json
+cat infra/flushy-infrastructure/src/cdktf.out/stacks/*/cdk.tf.json
 
 # Preview changes (requires GCP credentials, read-only)
 make infra-diff
-# or: cd infra/Flushy.Infrastructure && cdktf diff
+# or: cd infra/flushy-infrastructure/src && cdktf diff
 ```
 
 **Optional**: Unit tests for constructs using xUnit:
@@ -138,7 +138,7 @@ Each service configuration:
 
 ## File Structure
 ```
-infra/Flushy.Infrastructure/
+infra/flushy-infrastructure/src/
 ├── Program.cs                 # CDKTF entry point
 ├── Stacks/
 │   └── GcpStack.cs           # Main GCP resources stack

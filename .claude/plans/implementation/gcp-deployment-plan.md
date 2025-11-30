@@ -98,7 +98,7 @@ make infra-diff
 # - Log sinks
 
 make deploy
-# or: cd infra/Flushy.Infrastructure && cdktf deploy
+# or: cd infra/flushy-infrastructure/src && cdktf deploy
 ```
 
 **Expected resources created**:
@@ -246,7 +246,7 @@ Update README.md with:
 ## Teardown (When Done)
 ```bash
 # Destroy all resources
-cd infra/Flushy.Infrastructure
+cd infra/flushy-infrastructure/src
 cdktf destroy
 
 # Or manually delete via Console:
