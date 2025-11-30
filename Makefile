@@ -1,4 +1,4 @@
-.PHONY: up down logs build test clean deploy sonar sonar-up sonar-down quality help
+.PHONY: up down logs build test clean deploy infra-synth infra-diff infra-test sonar sonar-up sonar-down quality help
 
 help:  ## Show this help message
 	@echo 'Usage: make [target]'
@@ -25,8 +25,28 @@ clean:  ## Clean build artifacts
 	dotnet clean
 	find . -type d -name "bin" -o -name "obj" -o -name "TestResults" | xargs rm -rf
 
-deploy:  ## Deploy to GCP via CDKTF
-	cd infra/Flushy.Infrastructure && cdktf deploy
+infra-synth:  ## Generate Terraform JSON locally (no GCP required)
+	cd infra/Flushy.Infrastructure && cdktf synth
+	@echo "Generated Terraform files in infra/Flushy.Infrastructure/cdktf.out/"
+
+infra-diff:  ## Preview infrastructure changes (requires GCP credentials, read-only)
+	cd infra/Flushy.Infrastructure && cdktf diff
+
+infra-test:  ## Test infrastructure code locally (synth + validate)
+	@echo "Synthesizing CDKTF stack..."
+	cd infra/Flushy.Infrastructure && cdktf synth
+	@echo "✓ CDKTF synthesis successful"
+	@echo "Review generated files in infra/Flushy.Infrastructure/cdktf.out/"
+
+deploy:  ## Deploy to GCP via CDKTF (WARNING: may incur costs)
+	@echo "WARNING: This will deploy to GCP and may incur costs!"
+	@read -p "Are you sure? [y/N] " -n 1 -r; \
+	echo; \
+	if [[ $$REPLY =~ ^[Yy]$$ ]]; then \
+		cd infra/Flushy.Infrastructure && cdktf deploy; \
+	else \
+		echo "Deployment cancelled."; \
+	fi
 
 sonar-up:  ## Start SonarQube locally
 	docker-compose -f docker-compose.sonar.yml up -d

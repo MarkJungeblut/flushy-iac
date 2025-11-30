@@ -139,13 +139,34 @@ make sonar-up      # Start SonarQube locally
 make sonar         # Run SonarQube analysis
 make up            # Start services locally
 make down          # Stop services
-make deploy        # Deploy to GCP
+
+# Infrastructure (CDKTF) - Local Testing
+make infra-test    # Test CDKTF locally (no GCP, no costs)
+make infra-synth   # Generate Terraform JSON
+make infra-diff    # Preview changes (requires GCP creds, read-only)
+make deploy        # Deploy to GCP (WARNING: costs!)
 ```
+
+## Implementation Plans
+
+This project follows modular implementation plans located in `.claude/plans/implementation/`:
+
+1. **[Foundation Plan](/.claude/plans/implementation/foundation-plan.md)** ✅ - Directory structure, code quality tools, Makefile
+2. **[CDKTF Infrastructure Plan](/.claude/plans/implementation/cdktf-infrastructure-plan.md)** 🔄 - GCP infrastructure as code
+3. **[Shared Libraries Plan](/.claude/plans/implementation/shared-libraries-plan.md)** 🔄 - Configuration + Observability libraries
+4. **[REST API Service Plan](/.claude/plans/implementation/rest-api-service-plan.md)** 🔄 - .NET 10 REST API with hexagonal architecture
+5. **[gRPC Service Plan](/.claude/plans/implementation/grpc-service-plan.md)** 🔄 - .NET 10 gRPC service
+6. **[Docker Compose Plan](/.claude/plans/implementation/docker-compose-plan.md)** 🔄 - Local development orchestration
+7. **[Configuration & Testing Plan](/.claude/plans/implementation/configuration-testing-plan.md)** 🔄 - Environment configs, testing, SonarQube
+8. **[Documentation Plan](/.claude/plans/implementation/documentation-plan.md)** 🔄 - README, architecture docs, troubleshooting
+9. **[GCP Deployment Plan](/.claude/plans/implementation/gcp-deployment-plan.md)** 🔄 - Production deployment to GCP Cloud Run
+
+**Master Plan**: [steady-wondering-cloud.md](/.claude/plans/steady-wondering-cloud.md) (overview and architecture)
 
 ## Important Notes
 
-- This project follows the implementation plan in `.claude/plans/steady-wondering-cloud.md`
-- Always reference the plan for detailed requirements
+- Always reference the relevant plan for detailed requirements
+- Plans are modular - update individual files as needed
 - Maintain hexagonal architecture throughout
 - Code quality gates must pass before merging
 - Test coverage must remain above 80%
