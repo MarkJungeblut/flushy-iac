@@ -1,0 +1,13 @@
+{
+  "language": "csharp",
+  "app": "dotnet run -p Flushy.Infrastructure.csproj",
+  "projectId": "flushy-infrastructure",
+  "sendCrashReports": "false",
+  "terraformProviders": [
+    "google@~> 6.0"
+  ],
+  "terraformModules": [],
+  "context": {
+
+  }
+}

@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateProgramFile>false</GenerateProgramFile>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <NoWarn>$(NoWarn);S1848;CA1308;CA1062;CA1806</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HashiCorp.Cdktf" Version="0.21.0" />
+    <PackageReference Include="HashiCorp.Cdktf.Providers.Google" Version="16.0.0" />
+    <PackageReference Include="Constructs" Version="10.4.2" />
+  </ItemGroup>
+
+</Project>
